@@ -20,17 +20,28 @@ struct ListViewUI: View {
         Waste(nome: "Organic", img: "wineglass"),
         Waste(nome: "Undifferentiated", img: "leaf"),
         Waste(nome: "WEEE", img: "powerplug"),
-        Waste(nome: "Special waste", img: "atom"),
-    ]
+        Waste(nome: "Special waste", img: "atom")]
+    
+    @State var login: Bool = false
     @State private var searchText = ""
     var body: some View {
-        List(wastes) { Waste in
-            HStack{
-                Image(systemName: Waste.img)
+        NavigationStack(){
+            List(wastes) { Waste in
+                HStack{
+                    Image(systemName: Waste.img)
                     Text(Waste.nome)
+                }
             }
         }
     }
+    
+    var searchResults: [Waste] {
+            if searchText.isEmpty {
+                return wastes
+            } else {
+                return wastes.filter {$0.nome.lowercased().contains(searchText.lowercased())}
+            }
+        }
 }
 
 
