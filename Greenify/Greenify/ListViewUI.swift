@@ -25,13 +25,13 @@ struct ListViewUI: View {
     var body: some View {
         NavigationStack(){
             List() {
-                NavigationLink(destination: PlasticAndMetalsPage()){
+                NavigationLink(destination: PlasticViewUI()){
                     Section{
                         Image(systemName: "waterbottle")
                         Text("Plastic and metals")
                     }
                 }
-                NavigationLink(destination: PaperPage()){
+                NavigationLink(destination: PaperViewUI()){
                     Section{
                         Image(systemName: "newspaper")
                         Text("Paper")
@@ -47,7 +47,6 @@ struct ListViewUI: View {
                     Section{
                         Image(systemName: "leaf")
                         Text("Organic")
-                        
                     }
                 }
                 
@@ -55,7 +54,6 @@ struct ListViewUI: View {
                     Section{
                         Image(systemName: "hand.raised.brakesignal.slash")
                         Text("Undifferentiated")
-                        
                     }
                 }
                 
@@ -63,7 +61,6 @@ struct ListViewUI: View {
                     Section{
                         Image(systemName: "powerplug")
                         Text("WEEE")
-                        
                     }
                 }
                 
@@ -71,7 +68,6 @@ struct ListViewUI: View {
                     Section{
                         Image(systemName: "atom")
                         Text("Special Waste")
-                        
                     }
                 }
 
@@ -81,19 +77,6 @@ struct ListViewUI: View {
     }
 }
 
-struct PlasticAndMetalsPage: View {
-    var body: some View {
-        Text("Pagina di plastica e metalli")
-            .navigationTitle("Plastic and metals")
-    }
-}
-
-struct PaperPage: View {
-    var body: some View {
-        Text("Pagina di carta")
-            .navigationTitle("Paper")
-    }
-}
 
 struct GlassPage: View {
     var body: some View {
