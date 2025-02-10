@@ -2,7 +2,7 @@
 //  SplashArtView.swift
 //  Greenify
 //
-//  Created by san022 on 07/02/25.
+//  Created by GiuseppeRuggiero on 07/02/25.
 //
 
 import SwiftUI
