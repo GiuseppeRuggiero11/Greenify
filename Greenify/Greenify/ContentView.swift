@@ -12,7 +12,7 @@ struct ContentView: View {
         NavigationStack {
             TabView {
                 Tab("Around You", systemImage: "network") {
-                    FirstView()
+                    CustomMapView()
                 }
                 Tab("Throw it here", systemImage: "basket") {
                     SecondView()
