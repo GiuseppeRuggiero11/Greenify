@@ -16,35 +16,119 @@ struct Waste: Identifiable {
 struct ListViewUI: View {
     @State var wastes = [Waste(nome: "Plastic and metals", img: "waterbottle"),
         Waste(nome: "Paper", img: "newspaper"),
-        Waste(nome: "Glass", img: "tram"),
-        Waste(nome: "Organic", img: "wineglass"),
-        Waste(nome: "Undifferentiated", img: "leaf"),
+        Waste(nome: "Glass", img: "wineglass"),
+        Waste(nome: "Organic", img: "leaf"),
+        Waste(nome: "Undifferentiated", img: "hand.raised.brakesignal.slash"),
         Waste(nome: "WEEE", img: "powerplug"),
         Waste(nome: "Special waste", img: "atom")]
-    
-    @State var login: Bool = false
-    @State private var searchText = ""
+
     var body: some View {
         NavigationStack(){
-            List(wastes) { Waste in
-                HStack{
-                    Image(systemName: Waste.img)
-                    Text(Waste.nome)
+            List() {
+                NavigationLink(destination: PlasticAndMetalsPage()){
+                    Section{
+                        Image(systemName: "waterbottle")
+                        Text("Plastic and metals")
+                    }
                 }
+                NavigationLink(destination: PaperPage()){
+                    Section{
+                        Image(systemName: "newspaper")
+                        Text("Paper")
+                    }
+                }
+                NavigationLink(destination: GlassPage()){
+                    Section{
+                        Image(systemName: "wineglass")
+                        Text("Glass")
+                    }
+                }
+                NavigationLink(destination: OrganicPage()){
+                    Section{
+                        Image(systemName: "leaf")
+                        Text("Organic")
+                        
+                    }
+                }
+                
+                NavigationLink(destination: UndifferentiatedPage()){
+                    Section{
+                        Image(systemName: "hand.raised.brakesignal.slash")
+                        Text("Undifferentiated")
+                        
+                    }
+                }
+                
+                NavigationLink(destination: WEEEPage()){
+                    Section{
+                        Image(systemName: "powerplug")
+                        Text("WEEE")
+                        
+                    }
+                }
+                
+                NavigationLink(destination: SpecialWastePage()){
+                    Section{
+                        Image(systemName: "atom")
+                        Text("Special Waste")
+                        
+                    }
+                }
+
+
             }
-        }
+        }//.navigationTitle("Throw-it-here list")
     }
-    
-    var searchResults: [Waste] {
-            if searchText.isEmpty {
-                return wastes
-            } else {
-                return wastes.filter {$0.nome.lowercased().contains(searchText.lowercased())}
-            }
-        }
 }
 
+struct PlasticAndMetalsPage: View {
+    var body: some View {
+        Text("Pagina di plastica e metalli")
+            .navigationTitle("Plastic and metals")
+    }
+}
 
+struct PaperPage: View {
+    var body: some View {
+        Text("Pagina di carta")
+            .navigationTitle("Paper")
+    }
+}
+
+struct GlassPage: View {
+    var body: some View {
+        Text("Pagina di vetro")
+            .navigationTitle("Glass")
+    }
+}
+
+struct OrganicPage: View {
+    var body: some View {
+        Text("Pagina di Organico")
+            .navigationTitle("Organic")
+    }
+}
+
+struct UndifferentiatedPage: View {
+    var body: some View {
+        Text("Pagina di Indifferenziato")
+            .navigationTitle("Undifferentiated")
+    }
+}
+
+struct WEEEPage: View {
+    var body: some View {
+        Text("Pagina di Raee")
+            .navigationTitle("WEEE")
+    }
+}
+
+struct SpecialWastePage: View {
+    var body: some View {
+        Text("Pagina di rifiuti speciali")
+            .navigationTitle("Special waste")
+    }
+}
 #Preview {
     ListViewUI()
 }
