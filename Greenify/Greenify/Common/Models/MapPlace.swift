@@ -2,12 +2,12 @@
 //  MapPlace.swift
 //  Greenify
 //
-//  Created by san016 on 10/02/25.
+//  Created by san016 on 11/02/25.
 //
 import MapKit
 import SwiftUI
 
-struct MapPlace: Identifiable {
+class MapPlace: Identifiable {
     let id = UUID()
     let coordinates: CLLocationCoordinate2D
     let name: String
