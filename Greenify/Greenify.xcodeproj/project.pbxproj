@@ -249,16 +249,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Greenify/Preview Content\"";
-				DEVELOPMENT_TEAM = M727VVW7C8;
+				DEVELOPMENT_TEAM = NMKVX9FZUU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Abbiamo bisogno della tua posizione sempre per un'esperienza migliore.";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Abbiamo bisogno della tua posizione sempre per un'esperienza migliore.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Abbiamo bisogno della tua posizione sempre per un'esperienza migliore.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -269,9 +265,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = greenify.mario.app;
+				PRODUCT_BUNDLE_IDENTIFIER = GreenifySwiftUI.Greenify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -283,16 +278,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Greenify/Preview Content\"";
-				DEVELOPMENT_TEAM = M727VVW7C8;
+				DEVELOPMENT_TEAM = NMKVX9FZUU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Abbiamo bisogno della tua posizione sempre per un'esperienza migliore.";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Abbiamo bisogno della tua posizione sempre per un'esperienza migliore.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Abbiamo bisogno della tua posizione sempre per un'esperienza migliore.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -303,9 +294,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = greenify.mario.app;
+				PRODUCT_BUNDLE_IDENTIFIER = GreenifySwiftUI.Greenify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

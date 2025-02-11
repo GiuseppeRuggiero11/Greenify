@@ -1,13 +1,13 @@
 //
-//  PaperViewUI.swift
+//  GlassView.swift
 //  Greenify
 //
-//  Created by san022 on 10/02/25.
+//  Created by san022 on 11/02/25.
 //
 
 import SwiftUI
 
-struct PaperViewUI: View {
+struct GlassView: View {
     @State private var what = 0
     var body: some View {
         NavigationStack{
@@ -18,26 +18,27 @@ struct PaperViewUI: View {
                 }
                 .pickerStyle(.segmented)
                 if what == 0 {
-                    Text("What can you throw in paper bin?")
+                    Text("What can you throw in glass bin?")
                         .font(.title)
                         .padding(.top, 20)
-                    Text("Notebooks, books, magazines and newspapers, advertising flyers, cardboard boxes, cardboard boxes, unsoiled pizza boxes, drawing or copy paper.")
+                    Text("Empty glass bottles, jars and cans of their contents and remove any easily removable packaging accessories.")
                         .font(.body)
                         .padding(.top, 20)
                 }else {
-                    Text("What can't you throw in paper bin?")
+                    Text("What can't you throw in glass bin?")
                         .font(.title)
                         .padding(.top, 20)
-                    Text("Notebooks, books, magazines and newspapers, advertising flyers, cardboard boxes, cardboard boxes, unsoiled pizza boxes, drawing or copy paper.")
+                    Text("Plates, mirrors and all those glass objects that are not packaging, glasses and crystal objects, ceramics and porcelain, pyrex, light bulbs and neon, tubes and TV screens, computer monitors.")
                         .font(.body)
                         .padding(.top, 20)
                 }
-            }.navigationTitle("Paper")
+            }.padding()
+                .navigationTitle("Paper")
             Spacer()
-        }.padding()
+        }
     }
 }
 
 #Preview {
-    PaperViewUI()
+    GlassView()
 }

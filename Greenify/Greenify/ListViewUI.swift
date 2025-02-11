@@ -37,34 +37,34 @@ struct ListViewUI: View {
                         Text("Paper")
                     }
                 }
-                NavigationLink(destination: GlassPage()){
+                NavigationLink(destination: GlassView()){
                     Section{
                         Image(systemName: "wineglass")
                         Text("Glass")
                     }
                 }
-                NavigationLink(destination: OrganicPage()){
+                NavigationLink(destination: OrganicView()){
                     Section{
                         Image(systemName: "leaf")
                         Text("Organic")
                     }
                 }
                 
-                NavigationLink(destination: UndifferentiatedPage()){
+                NavigationLink(destination: UndifferentiatedView()){
                     Section{
                         Image(systemName: "hand.raised.brakesignal.slash")
                         Text("Undifferentiated")
                     }
                 }
                 
-                NavigationLink(destination: WEEEPage()){
+                NavigationLink(destination: WEEEView()){
                     Section{
                         Image(systemName: "powerplug")
                         Text("WEEE")
                     }
                 }
                 
-                NavigationLink(destination: SpecialWastePage()){
+                NavigationLink(destination: SpecialWasteView()){
                     Section{
                         Image(systemName: "atom")
                         Text("Special Waste")
@@ -77,41 +77,6 @@ struct ListViewUI: View {
     }
 }
 
-
-struct GlassPage: View {
-    var body: some View {
-        Text("Pagina di vetro")
-            .navigationTitle("Glass")
-    }
-}
-
-struct OrganicPage: View {
-    var body: some View {
-        Text("Pagina di Organico")
-            .navigationTitle("Organic")
-    }
-}
-
-struct UndifferentiatedPage: View {
-    var body: some View {
-        Text("Pagina di Indifferenziato")
-            .navigationTitle("Undifferentiated")
-    }
-}
-
-struct WEEEPage: View {
-    var body: some View {
-        Text("Pagina di Raee")
-            .navigationTitle("WEEE")
-    }
-}
-
-struct SpecialWastePage: View {
-    var body: some View {
-        Text("Pagina di rifiuti speciali")
-            .navigationTitle("Special waste")
-    }
-}
 #Preview {
     ListViewUI()
 }

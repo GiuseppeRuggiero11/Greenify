@@ -27,10 +27,10 @@ struct PlasticViewUI: View {
                 }else {
                     Text("What can't you throw in plastic bin?")
                         .font(.title)
-                        .position(x: 185, y: 50)
+                        .padding(.top, 20)
                     Text("Bulky plastic goods (basins and buckets), toys, household appliances and their parts, containers of glue, enamel and paint, disposable plastic cutlery, rubber objects, CDs, DVDs, video cassettes including external containers, plastic and/or rubber pipes, cables and elements of electrical systems, films and photographic plates.")
                         .font(.body)
-                        .position(x: 185, y: -30)
+                        .padding(.top, 20)
                 }
             }.padding()
                 .navigationTitle("Plastic")
