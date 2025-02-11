@@ -33,7 +33,7 @@ struct SpecialWasteView: View {
                         .padding(.top, 20)
                 }
             }.padding()
-                .navigationTitle("Paper")
+                .navigationTitle("Special waste")
             Spacer()
         }
     }}

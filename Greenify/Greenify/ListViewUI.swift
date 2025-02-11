@@ -73,7 +73,7 @@ struct ListViewUI: View {
 
 
             }
-        }//.navigationTitle("Throw-it-here list")
+        }
     }
 }
 

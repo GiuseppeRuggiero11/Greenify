@@ -33,7 +33,7 @@ struct GlassView: View {
                         .padding(.top, 20)
                 }
             }.padding()
-                .navigationTitle("Paper")
+                .navigationTitle("Glass")
             Spacer()
         }
     }

@@ -15,33 +15,11 @@ struct ContentView: View {
                     CustomMapView()
                 }
                 Tab("Throw it here", systemImage: "basket") {
-                    SecondView()
+                    ListViewUI()
                 }
                 Tab("Communications", systemImage: "envelope") {
                     ThirdView()
                 }
-            }
-        }
-    }
-}
-
-struct FirstView: View {
-    var body: some View {
-        NavigationLink(destination: ThirdView()) {
-            HStack {
-                Text("Around you")
-                    .font(.largeTitle)
-            }
-        }
-    }
-}
-
-struct SecondView: View {
-    var body: some View {
-        NavigationLink(destination: SecondView()) {
-            HStack {
-                Text("Throw it here")
-                    .font(.largeTitle)
             }
         }
     }

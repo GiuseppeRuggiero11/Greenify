@@ -61,7 +61,7 @@ struct WEEEView: View {
                         .padding(.top, 20)
                 }
             }.padding()
-                .navigationTitle("Paper")
+                .navigationTitle("WEEE")
             Spacer()
         }
     }

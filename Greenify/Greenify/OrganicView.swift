@@ -32,7 +32,7 @@ struct OrganicView: View {
                         .font(.body)
                         .padding(.top, 20)
                 }
-            }.navigationTitle("Paper")
+            }.navigationTitle("Organic")
             Spacer()
         }.padding()
     }

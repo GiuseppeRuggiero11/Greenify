@@ -33,7 +33,7 @@ struct UndifferentiatedView: View {
                         .padding(.top, 20)
                 }
             }.padding()
-                .navigationTitle("Paper")
+                .navigationTitle("Undifferentiated")
             Spacer()
         }
     }
