@@ -18,7 +18,7 @@ struct ContentView: View {
                     ListViewUI()
                 }
                 Tab("Communications", systemImage: "envelope") {
-                    ThirdView()
+                    CommunicationsUIView()
                 }
             }
         }
