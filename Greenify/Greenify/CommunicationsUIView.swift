@@ -4,23 +4,33 @@ struct CommunicationsUIView: View {
     var body: some View {
         NavigationStack {
             NotificationListView()
-                
         }
     }
-    
+
     struct NotificationListView: View {
         @State private var notifications: [Notification] = [
-            Notification(title: "Comune di Benevento", description: "Aggiornamento mappa Ecopunti..", date: Date()),
-            Notification(title: "Raccolta RAEE", description: "Il servizio sarà attivo...", date: Date().addingTimeInterval(-86400)),
-            Notification(title: "Notifica senza titolo", description: "Dettagli mancanti", date: Date().addingTimeInterval(-172800))
+            Notification(
+                title: "Comune di Benevento",
+                description: "Aggiornamento mappa Ecopunti..", date: Date()),
+            Notification(
+                title: "Raccolta RAEE",
+                description: "Il servizio sarà attivo...",
+                date: Date().addingTimeInterval(-86400)),
+            Notification(
+                title: "Notifica senza titolo",
+                description: "Dettagli mancanti",
+                date: Date().addingTimeInterval(-172800)),
         ]
-        
+
         @State private var showingAddNotificationView = false  // Per il bottone "+"
-        
+
         var body: some View {
             List {
                 ForEach(notifications) { notification in
-                    NavigationLink(destination: NotificationDetailView(notification: notification)) {
+                    NavigationLink(
+                        destination: NotificationDetailView(
+                            notification: notification)
+                    ) {
                         NotificationRowView(notification: notification)
                     }
                 }
@@ -28,25 +38,25 @@ struct CommunicationsUIView: View {
                     notifications.remove(atOffsets: indexSet)
                 }
             }
-            
+
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Text("Communications")
-                        .font(.system(size:22))
-                        .bold(true)
+                        .font(.system(size: 22))
+                        // .bold(true)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Report Waste") {
                         showingAddNotificationView.toggle()  // Mostra la vista per aggiungere una notifica
                     }
                 }
-                
+
             }.sheet(isPresented: $showingAddNotificationView) {
                 AddNotificationView(notifications: $notifications)  // Aggiungi una vista di inserimento notifica
             }
         }
     }
-    
+
     struct AddNotificationView: View {
         @Binding var notifications: [Notification]
         @State private var title = ""
@@ -54,46 +64,52 @@ struct CommunicationsUIView: View {
         @State private var recipient = ""  // Destinatario
         @State private var subject = ""  // Oggetto
         @State private var bodyText = ""  // Corpo del messaggio
-        
+
         var body: some View {
-            NavigationStack {
-                Form {
-                    Section(header: Text("Email Style Report Waste")) {
-                        TextField("Recipient", text: $recipient)  // Destinatario
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.bottom, 5)
-                        
-                        TextField("Subject", text: $subject)  // Oggetto
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.bottom, 5)
-                        
-                        TextEditor(text: $bodyText)  // Corpo del messaggio
-                            .frame(height: 200)
-                            .border(Color.white, width: 1)
-                            .padding(.bottom, 5)
-                        
-                        Button("Send Report") {
-                            sendEmail()  // Funzione per inviare l'email
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .padding(.top)
+
+            Form {
+                Section(header: Text("Email Style Report Waste")) {
+                    TextField("Recipient", text: $recipient)  // Destinatario
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.bottom, 5)
+
+                    TextField("Subject", text: $subject)  // Oggetto
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.bottom, 5)
+
+                    TextEditor(text: $bodyText)  // Corpo del messaggio
+                        .frame(height: 200)
+                        .border(Color.white, width: 1)
+                        .padding(.bottom, 5)
+
+                    Button("Send Report") {
+                        sendEmail()  // Funzione per inviare l'email
                     }
+                    .buttonStyle(.borderedProminent)
+                    .padding(.top)
                 }
+
                 .navigationTitle("Report Waste")
                 .padding()
             }
         }
-        
+
         private func sendEmail() {
             // Crea il link "mailto:"
-            guard let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                  let encodedBodyText = bodyText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                  let encodedRecipient = recipient.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            guard
+                let encodedSubject = subject.addingPercentEncoding(
+                    withAllowedCharacters: .urlQueryAllowed),
+                let encodedBodyText = bodyText.addingPercentEncoding(
+                    withAllowedCharacters: .urlQueryAllowed),
+                let encodedRecipient = recipient.addingPercentEncoding(
+                    withAllowedCharacters: .urlQueryAllowed)
+            else {
                 return
             }
-            
-            let mailtoURLString = "mailto:foo@example.com?cc=bar@example.com&subject=Greetings%20from%20Cupertino!&body=Wish%20you%20were%20here!"
-            
+
+            let mailtoURLString =
+                "mailto:foo@example.com?cc=bar@example.com&subject=Greetings%20from%20Cupertino!&body=Wish%20you%20were%20here!"
+
             if let mailtoURL = URL(string: mailtoURLString) {
                 if UIApplication.shared.canOpenURL(mailtoURL) {
                     UIApplication.shared.open(mailtoURL)
@@ -101,11 +117,12 @@ struct CommunicationsUIView: View {
                     print("Errore: l'app Mail non è disponibile.")
                 }
             }
-            
+
             // Aggiungi la notifica alla lista
-            let newNotification = Notification(title: subject, description: bodyText, date: Date())
+            let newNotification = Notification(
+                title: subject, description: bodyText, date: Date())
             notifications.append(newNotification)
-            
+
             // Resetta i campi dopo l'invio
             title = ""
             description = ""
@@ -114,14 +131,14 @@ struct CommunicationsUIView: View {
             bodyText = ""
         }
     }
-    
+
     struct NotificationRowView: View {
         private let notification: Notification
-        
+
         init(notification: Notification) {
             self.notification = notification
         }
-        
+
         var body: some View {
             HStack {
                 Image(systemName: "bell")
@@ -140,11 +157,11 @@ struct CommunicationsUIView: View {
             }
         }
     }
-    
+
     struct NotificationDetailView: View {
         var notification: Notification
         @Environment(\.presentationMode) var presentationMode  // Per il pulsante "Back"
-        
+
         var body: some View {
             VStack {
                 Image(systemName: "bell")
@@ -165,13 +182,13 @@ struct CommunicationsUIView: View {
             .navigationTitle("Communication of")
         }
     }
-    
+
     struct Notification: Identifiable {
         var id = UUID()
         let title: String
         let description: String
         let date: Date
-        
+
         var formattedDate: String {
             let formatter = DateFormatter()
             formatter.dateStyle = .short
@@ -183,4 +200,3 @@ struct CommunicationsUIView: View {
 #Preview {
     CommunicationsUIView()
 }
-
