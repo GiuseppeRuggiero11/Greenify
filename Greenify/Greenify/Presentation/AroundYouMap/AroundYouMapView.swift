@@ -8,9 +8,9 @@
 import MapKit
 import SwiftUI
 
-struct CustomMapView: View {
+struct AroundYouMapView: View {
 
-    @StateObject private var viewModel = CustomMapViewModel()
+    @StateObject private var viewModel = AroundYouMapViewModel()
 
     var body: some View {
         VStack {
@@ -23,11 +23,12 @@ struct CustomMapView: View {
                 .foregroundStyle(Color(white: 0.4, opacity: 0.25))
                 .stroke(.orange, lineWidth: 2)
                 UserAnnotation()
-                
-                ForEach(viewModel.mapPlaces){ place in
-                    Marker(place.name, coordinate: place.coordinates).tint(.yellow)
+
+                ForEach(viewModel.mapPlaces) { place in
+                    Marker(place.name, coordinate: place.coordinates).tint(
+                        colorForAroundYouPlaceType(place.type))
                 }
-                
+
             }
         }.toolbarTitleDisplayMode(.automatic).toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -38,5 +39,5 @@ struct CustomMapView: View {
 }
 
 #Preview {
-    CustomMapView()
+    AroundYouMapView()
 }
