@@ -12,7 +12,7 @@ struct ContentView: View {
         NavigationStack {
             TabView {
                 Tab("Around You", systemImage: "network") {
-                    FirstView()
+                    CustomMapView()
                 }
                 Tab("Throw it here", systemImage: "basket") {
                     SecondView()
@@ -40,7 +40,7 @@ struct SecondView: View {
     var body: some View {
         NavigationLink(destination: SecondView()) {
             HStack {
-                Text("Communications")
+                Text("Throw it here")
                     .font(.largeTitle)
             }
         }
