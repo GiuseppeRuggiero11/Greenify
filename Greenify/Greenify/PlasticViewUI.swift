@@ -33,7 +33,7 @@ struct PlasticViewUI: View {
                         .position(x: 185, y: -30)
                 }
             }.padding()
-                .navigationTitle("Plastic" \(systemName: "bottle"))
+                //.navigationTitle("Plastic" (systemName: "bottle"))
             Spacer()
         }
     }
