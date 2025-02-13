@@ -75,7 +75,8 @@ struct ListViewUI: View {
                 }
             }.toolbarTitleDisplayMode(.inline).toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Text("Throw it here").font(.system(size: 22))
+                    Text("Throw it here").font(.system(size: 26))
+                        .bold(true)
                 }
             }
         }

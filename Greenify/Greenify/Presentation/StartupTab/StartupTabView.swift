@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct StartupTabView: View {
     var body: some View {
         TabView {
             Tab("Around You", systemImage: "network") {
@@ -24,5 +24,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    StartupTabView()
 }

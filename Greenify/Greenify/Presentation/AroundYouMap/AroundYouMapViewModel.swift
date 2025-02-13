@@ -10,16 +10,27 @@ import MapKit
 import SwiftUI
 
 class AroundYouMapViewModel: ObservableObject {
+
+    private var cancellables = Set<AnyCancellable>()
+
     @ObservedObject private var locationManager = LocationManager()
+
+    @Published public var ecopointsFilterChecked: Bool = true
+    @Published public var usedOilsFilterChecked: Bool = true
+    @Published public var usedClothesFilterChecked: Bool = true
+
+    @Published public var showAroundYouMapPlaceSheet: Bool = false
+    @Published public var selectedMapPlace: AroundYouMapPlace?
+
     @Published public var currentPosition: MapCameraPosition = .region(
         MKCoordinateRegion(
             center: CLLocationCoordinate2D(
-                latitude: 47.499167, longitude: 8.726667),
+                latitude: 41.1303614, longitude: 14.7786118),
             span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
         )
     )
 
-    @Published var mapPlaces: [AroundYouMapPlace] = [
+    private let staticMapPlaces: [AroundYouMapPlace] = [
         AroundYouMapPlace(
             coordinates: CLLocationCoordinate2D(
                 latitude: 41.14920651191567, longitude: 14.781719048799813),
@@ -112,42 +123,70 @@ class AroundYouMapViewModel: ObservableObject {
             coordinates: CLLocationCoordinate2D(
                 latitude: 41.112662, longitude: 14.766971000000018),
             name: "Raccolta Abiti Contrada Madonna della Salute",
-            description: "Paccolta Abiti Contrada Madonna della Salute",
+            description: "Raccolta Abiti Contrada Madonna della Salute",
             type: .usedClothes),
         AroundYouMapPlace(
             coordinates: CLLocationCoordinate2D(
                 latitude: 41.10993099999999, longitude: 14.75466199999999),
             name: "Raccolta Abiti Contrada Pontecorvo",
-            description: "Paccolta Abiti Contrada Pontecorvo",
+            description: "Raccolta Abiti Contrada Pontecorvo",
             type: .usedClothes),
         AroundYouMapPlace(
             coordinates: CLLocationCoordinate2D(
                 latitude: 41.147527100000005, longitude: 14.75515360000002),
             name: "Raccolta Abiti Contrada San Vitale",
-            description: "Paccolta Abiti Contrada San Vitale",
+            description: "Raccolta Abiti Contrada San Vitale",
             type: .usedClothes),
         AroundYouMapPlace(
             coordinates: CLLocationCoordinate2D(
                 latitude: 41.17056299999997, longitude: 14.735563999999991),
             name: "Raccolta Abiti Contrada Olivola",
-            description: "Paccolta Abiti Contrada Olivola", type: .usedClothes),
+            description: "Raccolta Abiti Contrada Olivola", type: .usedClothes),
         AroundYouMapPlace(
             coordinates: CLLocationCoordinate2D(
                 latitude: 41.198555200000015, longitude: 14.781757700000012),
             name: "Raccolta Abiti Contrada Panelli",
-            description: "Paccolta Abiti Contrada Panelli", type: .usedClothes),
+            description: "Raccolta Abiti Contrada Panelli", type: .usedClothes),
         AroundYouMapPlace(
             coordinates: CLLocationCoordinate2D(
                 latitude: 41.15809099999999, longitude: 14.76387600000001),
             name: "Raccolta Abiti Contrada Cardoncelli",
-            description: "Paccolta Abiti Contrada Cardoncelli",
+            description: "Raccolta Abiti Contrada Cardoncelli",
             type: .usedClothes),
     ]
+
+    public var mapPlaces: [AroundYouMapPlace] {
+        return self.staticMapPlaces.filter {
+            if $0.type == .usedClothes && !usedClothesFilterChecked {
+                return false
+            } else if $0.type == .ecopoint && !ecopointsFilterChecked {
+                return false
+            } else if $0.type == .usedOils && !usedOilsFilterChecked {
+                return false
+            } else {
+                return true
+            }
+        }
+    }
+    
+    public var hasMapPlaces: Bool {
+        return !mapPlaces.isEmpty
+    }
 
     init() {
         self.locationManager = locationManager
         self.locationManager.requestLocation()
         self.observeLocationChanges()
+    }
+
+    func onDidTapAroundYouMapPlace(_ place: AroundYouMapPlace) {
+        selectedMapPlace = place
+        showAroundYouMapPlaceSheet = true
+    }
+
+    func onDidTapSheetCloseButton() {
+        showAroundYouMapPlaceSheet = false
+        selectedMapPlace = nil
     }
 
     func observeLocationChanges() {
@@ -170,6 +209,10 @@ class AroundYouMapViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
-    private var cancellables = Set<AnyCancellable>()
+    deinit {
+        cancellables.forEach({ e in
+            e.cancel()
+        })
+    }
 
 }

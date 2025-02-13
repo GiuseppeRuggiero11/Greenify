@@ -22,9 +22,32 @@ struct CommunicationsUIView: View {
                 date: Date().addingTimeInterval(-172800)),
         ]
 
-        @State private var showingAddNotificationView = false  // Per il bottone "+"
+        private func sendEmail() {
+                let recipients = "ambiente@comunebn.it,info@asiabenevento.it"
+                let subject = "Segnalazione Problema in Città"
+                let body = """
+                Gentile Comune,
+
+                desidero segnalare un problema riguardante la nostra città.
+
+                Dettagli del problema:
+                (Descrivi qui il problema, includendo la posizione e qualsiasi informazione utile)
+
+                Grazie per l'attenzione.
+
+                Cordiali saluti. (nome, cognome)
+                """
+
+                let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                let encodedBody = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+
+                if let url = URL(string: "mailto:\(recipients)?subject=\(encodedSubject)&body=\(encodedBody)") {
+                    UIApplication.shared.open(url)
+                }
+            }
 
         var body: some View {
+
             List {
                 ForEach(notifications) { notification in
                     NavigationLink(
@@ -42,93 +65,23 @@ struct CommunicationsUIView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Text("Communications")
-                        .font(.system(size: 22))
-                        // .bold(true)
+                        .font(.system(size: 26))
+                        .bold(true)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Report Waste") {
-                        showingAddNotificationView.toggle()  // Mostra la vista per aggiungere una notifica
+                    Button(action: {
+                        sendEmail()
+                    }) {
+                        HStack {
+                            Text("Report").padding(
+                                EdgeInsets(
+                                    top: 0, leading: 8, bottom: 0, trailing: 4))
+                            Image(systemName: "plus.circle")
+                        }
                     }
                 }
 
-            }.sheet(isPresented: $showingAddNotificationView) {
-                AddNotificationView(notifications: $notifications)  // Aggiungi una vista di inserimento notifica
             }
-        }
-    }
-
-    struct AddNotificationView: View {
-        @Binding var notifications: [Notification]
-        @State private var title = ""
-        @State private var description = ""
-        @State private var recipient = ""  // Destinatario
-        @State private var subject = ""  // Oggetto
-        @State private var bodyText = ""  // Corpo del messaggio
-
-        var body: some View {
-
-            Form {
-                Section(header: Text("Email Style Report Waste")) {
-                    TextField("Recipient", text: $recipient)  // Destinatario
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding(.bottom, 5)
-
-                    TextField("Subject", text: $subject)  // Oggetto
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding(.bottom, 5)
-
-                    TextEditor(text: $bodyText)  // Corpo del messaggio
-                        .frame(height: 200)
-                        .border(Color.white, width: 1)
-                        .padding(.bottom, 5)
-
-                    Button("Send Report") {
-                        sendEmail()  // Funzione per inviare l'email
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .padding(.top)
-                }
-
-                .navigationTitle("Report Waste")
-                .padding()
-            }
-        }
-
-        private func sendEmail() {
-            // Crea il link "mailto:"
-            guard
-                let encodedSubject = subject.addingPercentEncoding(
-                    withAllowedCharacters: .urlQueryAllowed),
-                let encodedBodyText = bodyText.addingPercentEncoding(
-                    withAllowedCharacters: .urlQueryAllowed),
-                let encodedRecipient = recipient.addingPercentEncoding(
-                    withAllowedCharacters: .urlQueryAllowed)
-            else {
-                return
-            }
-
-            let mailtoURLString =
-                "mailto:foo@example.com?cc=bar@example.com&subject=Greetings%20from%20Cupertino!&body=Wish%20you%20were%20here!"
-
-            if let mailtoURL = URL(string: mailtoURLString) {
-                if UIApplication.shared.canOpenURL(mailtoURL) {
-                    UIApplication.shared.open(mailtoURL)
-                } else {
-                    print("Errore: l'app Mail non è disponibile.")
-                }
-            }
-
-            // Aggiungi la notifica alla lista
-            let newNotification = Notification(
-                title: subject, description: bodyText, date: Date())
-            notifications.append(newNotification)
-
-            // Resetta i campi dopo l'invio
-            title = ""
-            description = ""
-            recipient = ""
-            subject = ""
-            bodyText = ""
         }
     }
 
@@ -179,7 +132,7 @@ struct CommunicationsUIView: View {
                     .padding(.top)
             }
             .padding()
-            .navigationTitle("Communication of")
+            .navigationTitle("Communication")
         }
     }
 
@@ -197,6 +150,7 @@ struct CommunicationsUIView: View {
         }
     }
 }
+
 #Preview {
     CommunicationsUIView()
 }

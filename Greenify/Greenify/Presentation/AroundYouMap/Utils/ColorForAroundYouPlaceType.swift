@@ -9,13 +9,9 @@ import SwiftUI
 
 func colorForAroundYouPlaceType(_ type: AroundYouMapPlaceTypes) -> Color {
     switch type {
-    case .any:
-        return .yellow
-    case .ecopoint:
-        return .red.opacity(0.8)
-    case .usedClothes:
-        return .brown
-    case .usedOils:
-        return .yellow
+    case .usedClothes: return ColorPalette.lightBrown  // Raccolta abiti usati
+    case .ecopoint: return ColorPalette.lightGreen  // Ecopunto
+    case .usedOils: return ColorPalette.lightYellow  // Raccolta oli usati
+    case .any: return .blue  // Default o altro tipo generico
     }
 }
