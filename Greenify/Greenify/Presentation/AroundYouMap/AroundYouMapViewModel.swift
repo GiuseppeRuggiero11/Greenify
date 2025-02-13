@@ -33,6 +33,12 @@ class AroundYouMapViewModel: ObservableObject {
     private let staticMapPlaces: [AroundYouMapPlace] = [
         AroundYouMapPlace(
             coordinates: CLLocationCoordinate2D(
+                latitude: 41.1371902, longitude: 14.7898348),
+            name: "Ecocentro comunale - ASIA",
+            description: "Ecocentro comunale - ASIA",
+            type: .municipalityEcopoint),
+        AroundYouMapPlace(
+            coordinates: CLLocationCoordinate2D(
                 latitude: 41.14920651191567, longitude: 14.781719048799813),
             name: "Ecopunto Acquafredda",
             description: "Ecopunto Acquafredda",
@@ -168,7 +174,7 @@ class AroundYouMapViewModel: ObservableObject {
             }
         }
     }
-    
+
     public var hasMapPlaces: Bool {
         return !mapPlaces.isEmpty
     }
