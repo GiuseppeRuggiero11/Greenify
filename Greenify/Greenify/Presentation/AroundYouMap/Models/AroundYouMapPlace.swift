@@ -8,7 +8,7 @@ import MapKit
 import SwiftUI
 
 class AroundYouMapPlace: MapPlace {
-    var type: AroundYouMapPlaceTypes
+    let type: AroundYouMapPlaceTypes
     init(
         coordinates: CLLocationCoordinate2D, name: String, description: String,
         type: AroundYouMapPlaceTypes
