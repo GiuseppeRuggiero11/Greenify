@@ -6,7 +6,7 @@
 //Prova_branch
 //
 
-import SwiftUI
+/* import SwiftUI
 
 struct SplashArtView: View {
     var body: some View {
@@ -28,4 +28,4 @@ struct SplashArtView: View {
 
 #Preview {
     SplashArtView()
-}
+}*/
