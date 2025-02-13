@@ -7,6 +7,7 @@
 
 enum AroundYouMapPlaceTypes {
     case any
+    case municipalityEcopoint
     case ecopoint
     case usedClothes
     case usedOils
