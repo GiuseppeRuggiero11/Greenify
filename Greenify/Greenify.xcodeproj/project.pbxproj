@@ -256,6 +256,7 @@
 				DEVELOPMENT_TEAM = M727VVW7C8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Greenify;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Abbiamo bisogno della tua posizione sempre per un'esperienza migliore.";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Abbiamo bisogno della tua posizione sempre per un'esperienza migliore.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Abbiamo bisogno della tua posizione sempre per un'esperienza migliore.";
@@ -290,6 +291,7 @@
 				DEVELOPMENT_TEAM = M727VVW7C8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Greenify;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Abbiamo bisogno della tua posizione sempre per un'esperienza migliore.";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Abbiamo bisogno della tua posizione sempre per un'esperienza migliore.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Abbiamo bisogno della tua posizione sempre per un'esperienza migliore.";
